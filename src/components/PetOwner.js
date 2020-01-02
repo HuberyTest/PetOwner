@@ -1,6 +1,7 @@
 import React from 'react';
 import get from '../utils/RequestUtil';
 import ListGroupItem from './ListGroupItem';
+import config from '../config'
 
 class PetOwner extends React.Component {
 
@@ -9,7 +10,7 @@ class PetOwner extends React.Component {
         this.state = {
             petData: []
         }
-        this.petsUrl = "http://5c92dbfae7b1a00014078e61.mockapi.io/owners";
+        this.petsUrl = config.listUrl;
     }
 
     componentDidMount() {
