@@ -1,12 +1,13 @@
 import React from 'react';
 import get from '../utils/RequestUtil';
-import MyItem from './MyItem';
+import ListGroupItem from './ListGroupItem';
+
 class PetOwner extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            petData: {}
+            petData: []
         }
         this.petsUrl = "http://5c92dbfae7b1a00014078e61.mockapi.io/owners";
     }
@@ -25,34 +26,13 @@ class PetOwner extends React.Component {
         });
     }
 
-    printTypeObjArray(objArray, typeFld, nameFld) {
-        let output = [];
-        let preObj = null;
-        output.push(<ul>);
-        output.push(<li>Coffee</li>);
-        output.push(<li>Milk</li>);
-        output.push(</ul>);
-    
-        // for (let o of objArray) {
-        //     if (preObj == null) {
-        //         output.push(<ul><li>{o[typeFld]}</li>);
-        //     } else if (preObj[typeFld] != o[typeFld]) {
-        //         output.push(</ul><ul><li>{o[typeFld]}</li>);
-        //     }
-        //     output.push(<li>{o[nameFld]}</li>);
-        // }
-        return output;
-    }
-
     render() {
-        let people = this.printTypeObjArray(this.state.petData, "gender", "name");
-        let output = [];
-        let preObj = null;
-
+        const paramArray = [
+            {groupProp: "gender", displayProp: "name", childProp: "pets"},
+            {groupProp: "type", displayProp: "name"},
+        ]
         return (
-            <div>
-                <ul><MyItem /></ul>
-            </div>
+            <ListGroupItem objList={this.state.petData} level={0} paramArray={paramArray} />
         ) 
         
     }
