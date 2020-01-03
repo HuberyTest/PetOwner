@@ -5,8 +5,7 @@ function get(uri) {
         headers:{
             'Content-Type':'application/json;charset=UTF-8'
         },
-        mode:'cors',
-        cache:'default'
+        cache:'no-cache'
     }
     return fetch(uri, req)
         .then(res => res.json())
